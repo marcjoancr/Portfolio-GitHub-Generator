@@ -1,15 +1,17 @@
 .profile {
-  width: 400px;
-  margin: calc(50% - var(--nav-height)) auto 0;
+  width: 500px;
+  padding: 10px;
+  margin: 200px auto 0;
   text-align: center;
-  transform: translateY(-100%);
+  color: var(--text-color-contrasted);
+  background-color: var(--primary-color);
 }
 
 .profile .avatar {
   display: block;
   width: 50%;
-  margin: 0 auto;
+  margin: 0 auto -25%;
   border: 4px solid var(--primary-color);
   border-radius: 50%;
-  /* transform: translateY(); */
+  transform: translateY(-50%);
 }

@@ -5,7 +5,7 @@ nav {
   top: 0;
   width: 100%;
   height: var(--nav-height);
-  background-color: var(--bg-color);
+  background-color: var(--primary-color);
   opacity: 0.95;
   z-index: 10;
 }
@@ -23,6 +23,7 @@ nav {
 .navbar .logo {
   flex: 1 0 150px;
   margin-right: 15px;
+  color: var(--text-color-contrasted);
 }
 .navbar .menu {
   flex: 1 1 429px;
@@ -35,7 +36,7 @@ nav {
 }
 .navbar .menu a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color-contrasted);
 }
 .navbar .menu .item {
   display: inline-block;
@@ -95,7 +96,7 @@ nav {
     font-size: 1.5rem;
     text-align: left;
   }
-  
+
   /* SIDEBAR TOGGLE */
   #sidebar-toggle {
     display: none;
@@ -127,7 +128,7 @@ nav {
   #sidebar-toggle:checked ~ .sidebar .menu-icon .hamburger::before {
     transform: translateY(-250%) rotate(135deg);
   }
-  
+
   /* MENU ICON */
   .menu-icon {
     position: relative;
@@ -139,7 +140,9 @@ nav {
     cursor: pointer;
     transition: all 250ms ease-in-out;
   }
-  .hamburger, .hamburger::before, .hamburger::after {
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
     position: relative;
     display: block;
     width: 85%;
@@ -150,8 +153,9 @@ nav {
     transition: transform 250ms ease-in-out;
     cursor: pointer;
   }
-  .hamburger::before, .hamburger::after {
-    content: "";
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
     position: absolute;
     right: 0;
   }
@@ -161,5 +165,4 @@ nav {
   .hamburger::after {
     bottom: 0;
   }
-  
 }

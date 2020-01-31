@@ -1,0 +1,10 @@
+.projects {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.projects .project {
+  flex: 1 1 400px;
+  color: var(--text-color-contrasted);
+  background-color: var(--primary-color);
+}

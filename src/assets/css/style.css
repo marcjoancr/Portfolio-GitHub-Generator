@@ -1,6 +1,6 @@
 /*** VARIABLES */
 :root {
-  --primary-color: black;
+  --primary-color: #2ecc71;
 
   --text-color: #1b262c;
   --text-color-contrasted: #f9f9f9;
@@ -23,6 +23,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
 }
 
 code {
