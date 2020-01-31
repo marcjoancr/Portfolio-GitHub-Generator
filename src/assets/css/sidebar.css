@@ -1,0 +1,165 @@
+/*** NAV */
+nav {
+  display: block;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background-color: var(--bg-color);
+  opacity: 0.95;
+  z-index: 10;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: var(--desktop-width);
+  padding: 0 var(--side-padding);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.navbar .logo {
+  flex: 1 0 150px;
+  margin-right: 15px;
+}
+.navbar .menu {
+  flex: 1 1 429px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+  text-align: right;
+}
+.navbar .menu a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+.navbar .menu .item {
+  display: inline-block;
+  margin: 0 15px;
+  text-transform: capitalize;
+  letter-spacing: 1.25px;
+}
+.navbar .menu .item:first-child {
+  margin-left: 0;
+}
+.navbar .menu .item:last-child {
+  margin-right: 0;
+}
+.navbar .menu .login {
+  flex: 1 1 65px;
+  text-decoration: underline;
+}
+.navbar .menu .signin {
+  flex: 1 1 200px;
+  display: inline-block;
+  padding: 9px 15px;
+  margin-left: 7px;
+  color: var(--text-color-contrasted);
+}
+
+/*** SIDEBAR */
+#sidebar-toggle {
+  display: none;
+  position: absolute;
+  z-index: 100;
+}
+.menu-icon {
+  display: none;
+}
+@media only screen and (max-width: 638px) {
+  /* SIDEBAR */
+  .sidebar {
+    --menu-width: 300px;
+
+    opacity: 1;
+  }
+  .sidebar .menu {
+    position: absolute;
+    top: 0;
+    right: -300px;
+    display: block;
+    width: var(--menu-width);
+    height: 100vh;
+    padding: var(--nav-height) 0 0 25px;
+    background-color: var(--bg-color);
+    box-sizing: border-box;
+    transition: all 250ms ease-in-out;
+  }
+  .sidebar .menu .item {
+    display: block;
+    margin: 20px 0;
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  
+  /* SIDEBAR TOGGLE */
+  #sidebar-toggle {
+    display: none;
+    position: absolute;
+    z-index: 100;
+  }
+  #sidebar-toggle:checked ~ .sidebar .menu {
+    right: 0;
+  }
+  #sidebar-toggle:checked ~ .sidebar .menu-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  #sidebar-toggle:checked ~ .sidebar .menu-icon {
+    transform: rotate(180deg);
+    z-index: 10;
+  }
+  #sidebar-toggle:checked ~ .sidebar .menu-icon .hamburger {
+    height: 0;
+  }
+  #sidebar-toggle:checked ~ .sidebar .menu-icon .hamburger::after {
+    transform: translateY(250%) rotate(-135deg);
+  }
+  #sidebar-toggle:checked ~ .sidebar .menu-icon .hamburger::before {
+    transform: translateY(-250%) rotate(135deg);
+  }
+  
+  /* MENU ICON */
+  .menu-icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 35px;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+  }
+  .hamburger, .hamburger::before, .hamburger::after {
+    position: relative;
+    display: block;
+    width: 85%;
+    height: 5px;
+    margin: 10px 0;
+    background-color: black;
+    transition: height 150ms ease-in-out;
+    transition: transform 250ms ease-in-out;
+    cursor: pointer;
+  }
+  .hamburger::before, .hamburger::after {
+    content: "";
+    position: absolute;
+    right: 0;
+  }
+  .hamburger::before {
+    top: 0;
+  }
+  .hamburger::after {
+    bottom: 0;
+  }
+  
+}

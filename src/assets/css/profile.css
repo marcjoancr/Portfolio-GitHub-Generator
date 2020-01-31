@@ -1,0 +1,15 @@
+.profile {
+  width: 400px;
+  margin: calc(50% - var(--nav-height)) auto 0;
+  text-align: center;
+  transform: translateY(-100%);
+}
+
+.profile .avatar {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  border: 4px solid var(--primary-color);
+  border-radius: 50%;
+  /* transform: translateY(); */
+}

@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Navigator from './components/Navigator';
+import Card from './components/Card';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      data: {
+        profile: {
+          name: 'Portfolio'
+        }
+      },
+      loading: true
+    };
+
+    this.getGitHubUser = this.getGitHubUser.bind(this);
+  }
+
+  componentDidMount() {
+    this.getGitHubUser();
+  }
+
+  getGitHubUser() {
+    fetch('https://api.github.com/users/marcjoan')
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        const profile = {
+          name: data.name,
+          bio: data.bio,
+          avatar: data.avatar_url
+        };
+        this.setState({ data: { profile }, loading: false });
+      })
+      .catch(error => {
+        this.setState({ loading: false });
+      });
+  }
+
+  render() {
+    return (
+      <>
+        <Navigator title={this.state.data.profile.name} />
+        <main>
+          <Card profile={this.state.data.profile} />
+        </main>
+      </>
+    );
+  }
 }
-
-export default App;

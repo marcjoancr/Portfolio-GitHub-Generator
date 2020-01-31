@@ -1,0 +1,42 @@
+/*** VARIABLES */
+:root {
+  --primary-color: black;
+
+  --text-color: #1b262c;
+  --text-color-contrasted: #f9f9f9;
+  --bg-color: #f9f9f9;
+
+  --desktop-width: 1280px;
+
+  --nav-height: 65px;
+  --side-padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: var(--nav-height) 0 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+main {
+  max-width: var(--desktop-width);
+  min-height: 100vh;
+  padding: 0 var(--side-padding);
+  margin: 0 auto;
+}
+
+figure {
+  margin: 0;
+}
