@@ -32,73 +32,65 @@ export default class App extends Component {
     this.getGitHubUser();
   }
 
-  getGitHubUser() {
-    fetch('https://api.github.com/users/marcjoan')
+  doFetch(url, callback) {
+    return fetch(url)
       .then(response => {
         return response.json();
       })
-      .then(user => {
-        const profile = {
-          name: user.name || user.login,
-          bio: user.bio,
-          avatar: user.avatar_url,
-          email: user.email,
-          url: user.url,
-          company: user.company,
-          location: user.location,
-          repos_url: user.repos_url
-        };
-        this.setState({ profile });
-        this.getRepositoriesFromUser();
+      .then(data => {
+        callback(data);
       })
       .catch(error => {
         console.log(error);
       });
+  }
+
+  getGitHubUser() {
+    this.doFetch('https://api.github.com/users/marcjoan', user => {
+      const profile = {
+        name: user.name || user.login,
+        bio: user.bio,
+        avatar: user.avatar_url,
+        email: user.email,
+        url: user.url,
+        company: user.company,
+        location: user.location,
+        repos_url: user.repos_url
+      };
+      this.setState({ profile });
+      this.getRepositoriesFromUser();
+    });
   }
 
   getRepositoriesFromUser() {
-    fetch(this.state.profile.repos_url)
-      .then(response => {
-        return response.json();
-      })
-      .then(repos => {
-        const repositories = [];
-        repos.forEach(rep => {
-          if (rep.fork) return;
-          const repo = {
-            name: rep.name.replace(/-/g, ' '),
-            description: rep.description,
-            url: rep.html_url,
-            languages_url: rep.languages_url,
-            stars: rep.stargazers_count,
-            forks: rep.forks_count
-          };
-          repositories.push(repo);
-          this.getRepoLanguages(repo);
-        });
-        this.setState({ repositories });
-      })
-      .catch(error => {
-        console.log(error);
+    this.doFetch(this.state.profile.repos_url, repos => {
+      const repositories = [];
+      repos.forEach(rep => {
+        if (rep.fork) return;
+        const repo = {
+          name: rep.name.replace(/-/g, ' '),
+          description: rep.description,
+          url: rep.html_url,
+          languages_url: rep.languages_url,
+          stars: rep.stargazers_count,
+          forks: rep.forks_count
+        };
+        repositories.push(repo);
+        this.getRepoLanguages(repo);
       });
+      this.setState({ repositories });
+    });
   }
 
   getRepoLanguages(repo) {
-    fetch(repo.languages_url)
-      .then(response => {
-        return response.json();
-      })
-      .then(langs => {
-        const languages = this.state.languages;
-        languages.total += Object.values(langs).reduce((acc, v) => acc + v);
-        Object.entries(langs).forEach(([key, value]) => {
-          languages[key] = value + languages[key] || value;
-        });
-        this.setState({ languages });
-      })
-      .catch(error => {
-        console.log(error);
+    this.doFetch(repo.languages_url, langs => {
+      const languages = this.state.languages;
+      languages.total += Object.values(langs).reduce((acc, v) => acc + v);
+      Object.entries(langs).forEach(([key, value]) => {
+        languages[key] = value + languages[key] || value;
       });
+      this.setState({ languages });
+    });
   }
 
   render() {
