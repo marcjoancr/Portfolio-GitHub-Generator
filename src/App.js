@@ -39,7 +39,7 @@ export default class App extends Component {
       })
       .then(user => {
         const profile = {
-          name: user.name,
+          name: user.name || user.login,
           bio: user.bio,
           avatar: user.avatar_url,
           email: user.email,
@@ -66,7 +66,7 @@ export default class App extends Component {
         repos.forEach(rep => {
           if (rep.fork) return;
           const repo = {
-            name: rep.name,
+            name: rep.name.replace(/-/g, ' '),
             description: rep.description,
             url: rep.html_url,
             languages_url: rep.languages_url,
@@ -104,18 +104,18 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Navigator title={this.state.profile.name} />
+        <Navigator title={'Portfolio'} />
         <main>
           <Card profile={this.state.profile} />
+          <Languages
+            languages={this.state.languages}
+            total={this.state.languages.total}
+          />
           <section className='projects'>
             {this.state.repositories.map((repository, i) => (
               <Projects key={i} project={repository} />
             ))}
           </section>
-          <Languages
-            languages={this.state.languages}
-            total={this.state.languages.total}
-          />
         </main>
       </>
     );

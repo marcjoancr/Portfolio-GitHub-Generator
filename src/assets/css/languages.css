@@ -1,0 +1,11 @@
+.languages {
+  display: block;
+  width: 100%;
+}
+.languages .language {
+  width: 100%;
+}
+.languages .language .bar {
+  height: 20px;
+  background-color: var(--primary-color);
+}

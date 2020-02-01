@@ -1,10 +1,21 @@
 .profile {
   width: 500px;
   padding: 10px;
-  margin: 200px auto 0;
+  margin: 250px auto 150px;
   text-align: center;
   color: var(--text-color-contrasted);
   background-color: var(--primary-color);
+}
+
+.profile .name {
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.profile .bio {
+  margin-top: 0;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  opacity: 0.8;
 }
 
 .profile .avatar {
@@ -14,4 +25,19 @@
   border: 4px solid var(--primary-color);
   border-radius: 50%;
   transform: translateY(-50%);
+}
+
+.profile .social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 35%;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+}
+.profile .social .item {
+  flex: 1 1 30px;
+  margin: 0 10px;
+  font-size: 1.5rem;
 }
