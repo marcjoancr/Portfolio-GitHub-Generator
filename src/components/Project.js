@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import '@material/react-material-icon/dist/material-icon.css';
 import '../assets/css/project.css';
+import React, { Component } from 'react';
+import { GoStar, GoRepoForked } from 'react-icons/go';
 
 export default class Project extends Component {
   constructor(props) {
@@ -16,8 +16,14 @@ export default class Project extends Component {
         </h2>
         <p className='description'>{project.description}</p>
         <div className='info'>
-          <i>{project.stars}</i>
-          <i>{project.forks}</i>
+          <p className='item'>
+            <GoStar />
+            {project.stars}
+          </p>
+          <p className='item'>
+            <GoRepoForked />
+            {project.forks}
+          </p>
         </div>
       </section>
     );

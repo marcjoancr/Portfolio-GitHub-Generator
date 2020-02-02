@@ -1,9 +1,11 @@
 /*** VARIABLES */
 :root {
-  --primary-color: #c4c4c4;
+  --primary-color: #404040;
+  --secondary-color: #404040;
+  --ternary-color: #404040;
 
-  --text-color: #1b262c;
-  --text-color-contrasted: #1b262c;
+  --text-color: #404040;
+  --text-color-contrasted: #f9f9f9;
   --bg-color: #f9f9f9;
 
   --base-font: 16px;
@@ -18,6 +20,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: var(--nav-height) 0 0;
   font-size: var(--base-font);
@@ -27,6 +33,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
 code {
@@ -39,6 +46,10 @@ main {
   min-height: 100vh;
   padding: 0 var(--side-padding);
   margin: 0 auto;
+}
+
+main > * {
+  margin: 0 0 50px;
 }
 
 figure {

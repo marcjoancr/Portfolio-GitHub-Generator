@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { HorizontalBar } from 'react-chartjs-2';
 
 import '../assets/css/languages.css';
 
@@ -11,33 +11,41 @@ export default class Languages extends Component {
   render() {
     const languages = this.props.languages;
     delete languages.total;
+    const dataValues = Object.values(languages).forEach(
+      value => value / this.props.total
+    );
+    const primaryColor = getComputedStyle(document.body).getPropertyValue(
+      '--primary-color'
+    );
+
     const data = {
       labels: Object.keys(languages),
       datasets: [
         {
           data: Object.values(languages),
-          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#87CE46'],
-          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#87CE46']
+          backgroundColor: primaryColor,
+          hoverBackgroundColor: primaryColor
         }
       ]
     };
+    const options = {
+      scales: {
+        yAxes: [
+          {
+            position: 'right'
+          }
+        ]
+      },
+      responsive: true,
+      maintainAspectRatio: true,
+      legend: {
+        display: false
+      }
+    };
 
     return (
-      <section className='languages'>
-        <Doughnut data={data} />
-        {/* {Object.entries(this.props.languages).map(lang => {
-          if (lang[0] == 'total') return;
-          const language = lang[0];
-          const value = Math.floor((lang[1] / this.props.total) * 10000) / 100;
-          return (
-            <React.Fragment key={language}>
-              <section className='language'>
-                <span className='name'>{language}</span>
-                <div className='bar' data-percent={value}></div>
-              </section>
-            </React.Fragment>
-          );
-        })} */}
+      <section id='languages' className='languages'>
+        <HorizontalBar data={data} options={options} height={100} />
       </section>
     );
   }

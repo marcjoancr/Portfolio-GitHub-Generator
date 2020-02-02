@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
 import '../assets/css/profile.css';
+
+import React, { Component } from 'react';
 import { GoMarkGithub, GoOrganization } from 'react-icons/go';
 import { MdEmail, MdLocationOn } from 'react-icons/md';
 
 export default class Card extends Component {
   constructor(props) {
     super(props);
+    this.copyToClipboard = this.copyToClipboard.bind(this);
   }
 
   render() {
@@ -15,20 +17,63 @@ export default class Card extends Component {
         <h1 className='name'>{this.props.profile.name}</h1>
         <h2 className='bio'>{this.props.profile.bio}</h2>
         <ul className='social'>
-          <li className='item'>
-            <MdEmail />
-          </li>
-          <li className='item'>
+          {this.props.profile.email ? (
+            <li
+              className='item'
+              data-value={this.props.profile.email}
+              onClick={this.copyToClipboard}
+            >
+              <MdEmail />
+            </li>
+          ) : (
+            <></>
+          )}
+          <li
+            className='item'
+            data-value={this.props.profile.url}
+            onClick={this.copyToClipboard}
+          >
             <GoMarkGithub />
           </li>
-          <li className='item'>
-            <GoOrganization />
-          </li>
-          <li className='item'>
-            <MdLocationOn />
-          </li>
+          {this.props.profile.company ? (
+            <li
+              className='item'
+              data-value={this.props.profile.company}
+              onClick={this.copyToClipboard}
+            >
+              <GoOrganization />
+            </li>
+          ) : (
+            <></>
+          )}
+          {this.props.profile.location ? (
+            <li
+              className='item'
+              data-value={this.props.profile.location}
+              onClick={this.copyToClipboard}
+            >
+              <MdLocationOn />
+            </li>
+          ) : (
+            <></>
+          )}
         </ul>
       </section>
     );
+  }
+
+  copyToClipboard(e) {
+    this.currentTarget = e.currentTarget;
+    this.value = e.currentTarget.dataset.value;
+    this.currentTarget.dataset.value = 'Copied to Clipboard';
+    var input = document.createElement('input');
+    input.value = this.value;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    setTimeout(() => {
+      this.currentTarget.dataset.value = this.value;
+    }, 2000);
   }
 }

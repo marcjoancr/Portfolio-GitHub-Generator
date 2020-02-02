@@ -1,10 +1,35 @@
 .projects {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: stretch;
+  align-items: top;
 }
 .projects .project {
-  flex: 1 1 400px;
-  color: var(--text-color-contrasted);
-  background-color: var(--primary-color);
+  padding: 20px;
+  color: var(--text-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 2px;
+}
+
+.projects .project > * {
+  margin: 0 0 10px;
+}
+.projects .project > *:last-child {
+  margin: 0;
+}
+.projects .project a {
+  color: var(--text-color);
+}
+.projects .project p {
+  font-size: 1.25rem;
+}
+.projects .project .info .item {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px 0 0;
+}
+.projects .project .info .item svg {
+  margin-right: 5px;
 }

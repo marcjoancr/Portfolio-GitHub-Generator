@@ -22,7 +22,10 @@ export default class Navigator extends Component {
                 <a href='#'>Resume</a>
               </li>
               <li className='item'>
-                <a href='#about_us'>Projects</a>
+                <a href='#languages'>Repo Languages</a>
+              </li>
+              <li className='item'>
+                <a href='#projects'>Projects</a>
               </li>
               <li className='item'>
                 <a href='#contact'>Contact</a>

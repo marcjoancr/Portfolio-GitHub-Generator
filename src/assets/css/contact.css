@@ -1,0 +1,42 @@
+.contact {
+  width: 100%;
+  margin-top: 100px;
+}
+.contact form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.contact form .email,
+.contact form .subject,
+.contact form .content {
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid var(--text-color);
+  border-radius: 2px;
+}
+.contact form .subject {
+  font-weight: bold;
+}
+.contact form .content {
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 200px;
+  height: 200px;
+  font-size: 1rem;
+}
+.contact form .submit {
+  float: right;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  outline: none;
+  border: 0px;
+  border-radius: 2px;
+  color: var(--text-color-contrasted);
+  background-color: var(--primary-color);
+  cursor: pointer;
+}

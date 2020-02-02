@@ -6,6 +6,7 @@ import Navigator from './components/Navigator';
 import Card from './components/Card';
 import Projects from './components/Project';
 import Languages from './components/Languages';
+import Contact from './components/Contact';
 
 export default class App extends Component {
   constructor() {
@@ -46,7 +47,7 @@ export default class App extends Component {
   }
 
   getGitHubUser() {
-    this.doFetch('https://api.github.com/users/marcjoan', user => {
+    this.doFetch('https://api.github.com/users/pablocloud', user => {
       const profile = {
         name: user.name || user.login,
         bio: user.bio,
@@ -72,6 +73,7 @@ export default class App extends Component {
           description: rep.description,
           url: rep.html_url,
           languages_url: rep.languages_url,
+          language: rep.language,
           stars: rep.stargazers_count,
           forks: rep.forks_count
         };
@@ -83,6 +85,7 @@ export default class App extends Component {
   }
 
   getRepoLanguages(repo) {
+    if (!repo.languages_url) return;
     this.doFetch(repo.languages_url, langs => {
       const languages = this.state.languages;
       languages.total += Object.values(langs).reduce((acc, v) => acc + v);
@@ -103,11 +106,12 @@ export default class App extends Component {
             languages={this.state.languages}
             total={this.state.languages.total}
           />
-          <section className='projects'>
+          <section id='projects' className='projects'>
             {this.state.repositories.map((repository, i) => (
               <Projects key={i} project={repository} />
             ))}
           </section>
+          <Contact email={this.state.profile.email} />
         </main>
       </>
     );
