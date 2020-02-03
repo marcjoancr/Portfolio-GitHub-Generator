@@ -9,7 +9,7 @@ export default class Languages extends Component {
 	}
 
 	componentDidMount() {
-		this.props.callback();
+		this.props.renderColors();
 	}
 
 	render() {

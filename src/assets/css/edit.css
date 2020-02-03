@@ -1,18 +1,11 @@
 .edit {
 	position: fixed;
 	top: var(--nav-height);
-	height: 100vh;
-	padding: 20px;
+	width: 0;
 	color: whitesmoke;
 	background-color: black;
 	opacity: 0.55;
 	z-index: 10;
-}
-.edit > div {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin: 10px 0;
 }
 .edit input[type='color'] {
 	width: 32px;
@@ -27,4 +20,73 @@
 }
 .edit input[type='color']::-webkit-color-swatch {
 	border: none;
+}
+.edit label {
+	margin-left: 10px;
+}
+.edit input[type='text'] {
+	width: 100%;
+	padding: 5px 10px;
+	font-size: 1rem;
+}
+
+/* SIDEBAR */
+.sidebar.edit {
+	--menu-width: 300px;
+	opacity: 1;
+}
+.sidebar.edit .menu {
+	position: absolute;
+	top: 0;
+	left: -300px;
+	display: block;
+	width: var(--menu-width);
+	height: 100vh;
+	padding: 15px 15px 25px;
+	margin: 0;
+	border-right: 2px solid var(--primary-color);
+	background-color: var(--bg-color);
+	opacity: 0.85;
+	transition: all 250ms ease-in-out;
+}
+.sidebar.edit .menu .item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px 0;
+	font-size: 1.2rem;
+	text-align: left;
+}
+
+/* SIDEBAR TOGGLE */
+#edit-toggle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 100;
+}
+#edit-toggle:checked ~ .sidebar.edit .menu {
+	left: 0;
+}
+#sidebar-toggle:checked ~ .sidebar.edit .menu-icon {
+	opacity: 0;
+}
+
+/* MENU ICON */
+.sidebar.edit .menu-icon {
+	position: absolute;
+	left: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 45px;
+	height: 45px;
+	color: var(--text-color);
+	background-color: var(--primary-color);
+	border-radius: 50%;
+	cursor: pointer;
+	transform: scaleX(-1) translateX(-5%);
+	transition: all 250ms ease-in-out;
+	z-index: 100;
 }

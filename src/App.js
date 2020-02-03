@@ -81,23 +81,49 @@ export default class App extends Component {
 				},
 			],
 			languages: { total: null },
-			colorsChanged: false,
+			edited: false,
 		};
 
 		this.getGitHubUser = this.getGitHubUser.bind(this);
 		this.getRepositoriesFromUser = this.getRepositoriesFromUser.bind(this);
 		this.getRepoLanguages = this.getRepoLanguages.bind(this);
-		this.editCallback = this.editCallback.bind(this);
-		this.languageCallback = this.languageCallback.bind(this);
+		this.colorsEdited = this.colorsEdited.bind(this);
+		this.renderColors = this.render.bind(this);
 		this.deleteProject = this.deleteProject.bind(this);
-	}
-
-	componentDidMount() {
-		this.getGitHubUser();
 	}
 
 	componentDidUpdate() {
 		// localStorage.setItem('storage', JSON.stringify(this.state));
+	}
+
+	render() {
+		return (
+			<>
+				<Navigator title={'Portfolio'} />
+				<Edit
+					colorsEdited={this.colorsEdited}
+					changeUser={this.getGitHubUser}
+				/>
+				<main>
+					<Card profile={this.state.profile} />
+					<Languages
+						languages={this.state.languages}
+						total={this.state.languages.total}
+						renderColors={this.renderColors}
+					/>
+					<section id='projects' className='projects'>
+						{this.state.repositories.map((repository) => (
+							<Projects
+								key={repository.id}
+								project={repository}
+								delete={this.deleteProject}
+							/>
+						))}
+					</section>
+					<Contact email={this.state.profile.email} />
+				</main>
+			</>
+		);
 	}
 
 	doFetch(url, callback) {
@@ -113,8 +139,8 @@ export default class App extends Component {
 			});
 	}
 
-	getGitHubUser() {
-		this.doFetch('https://api.github.com/users/marcjoan', (user) => {
+	getGitHubUser(username) {
+		this.doFetch(`https://api.github.com/users/${username}`, (user) => {
 			if (user.message) return;
 			const profile = {
 				id: user.id,
@@ -165,42 +191,15 @@ export default class App extends Component {
 		});
 	}
 
-	editCallback() {
-		this.setState({ colorsChanged: true });
-	}
-	languageCallback() {
+	colorsEdited() {
 		this.setState({ colorsChanged: false });
+	}
+	renderColors() {
+		this.setState({ colorsChanged: true });
 	}
 
 	deleteProject(id) {
 		const repositories = this.state.repositories.filter((v) => v.id != id);
 		this.setState({ repositories });
-	}
-
-	render() {
-		return (
-			<>
-				<Navigator title={'Portfolio'} />
-				<Edit callback={this.editCallback} />
-				<main>
-					<Card profile={this.state.profile} />
-					<Languages
-						languages={this.state.languages}
-						total={this.state.languages.total}
-						callback={this.languageCallback}
-					/>
-					<section id='projects' className='projects'>
-						{this.state.repositories.map((repository) => (
-							<Projects
-								key={repository.id}
-								project={repository}
-								delete={this.deleteProject}
-							/>
-						))}
-					</section>
-					<Contact email={this.state.profile.email} />
-				</main>
-			</>
-		);
 	}
 }

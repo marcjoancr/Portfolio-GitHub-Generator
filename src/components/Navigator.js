@@ -14,7 +14,7 @@ export default class Navigator extends Component {
 				<nav className='sidebar'>
 					<section className='navbar'>
 						<figure className='logo'>{this.props.title}</figure>
-						<label htmlFor='sidebar-toggle' className='menu-icon'>
+						<label id='nav-icon' htmlFor='sidebar-toggle' className='menu-icon'>
 							<i className='hamburger'></i>
 						</label>
 						<label htmlFor='sidebar-toggle' className='menu-bg'></label>
