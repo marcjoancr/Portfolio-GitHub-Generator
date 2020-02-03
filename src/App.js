@@ -18,9 +18,61 @@ export default class App extends Component {
       profile: {
         name: randomProfile.fullName,
         bio: 'Web Developer',
-        avatar: randomProfile.avatar
+        avatar: randomProfile.avatar,
+        email: 'sample@mail.test',
+        url: 'https://github.com/MarcJoan',
+        company: '@MainCompany',
+        location: 'Spain',
+        repos_url: ''
       },
-      repositories: [],
+      repositories: [
+        {
+          name: 'Sample Project Name',
+          description: 'Project short description sample',
+          url: 'https://github.com/MarcJoan',
+          languages_url: null,
+          language: 'Javascript',
+          stars: '3',
+          forks: '1'
+        },
+        {
+          name: 'Another Project Name',
+          description: 'Another short description sample',
+          url: 'https://github.com/MarcJoan',
+          languages_url: null,
+          language: 'HTML',
+          stars: '0',
+          forks: '0'
+        },
+        {
+          name: 'This Sample Project Large Name',
+          description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          url: 'https://github.com/MarcJoan',
+          languages_url: null,
+          language: 'Java',
+          stars: '24',
+          forks: '41'
+        },
+        {
+          name: 'Another Project Name 2',
+          description: 'Another short description sample',
+          url: 'https://github.com/MarcJoan',
+          languages_url: null,
+          language: 'HTML',
+          stars: '3',
+          forks: '0'
+        },
+        {
+          name: 'Another Project Name 3',
+          description: 'Another short description sample',
+          url: 'https://github.com/MarcJoan',
+          languages_url: null,
+          language: 'HTML',
+          stars: '0',
+          forks: '1'
+        }
+      ],
       languages: { total: null }
     };
 
@@ -47,13 +99,14 @@ export default class App extends Component {
   }
 
   getGitHubUser() {
-    this.doFetch('https://api.github.com/users/pablocloud', user => {
+    this.doFetch('https://api.github.com/users/NAME', user => {
+      if (user.message) return;
       const profile = {
         name: user.name || user.login,
         bio: user.bio,
         avatar: user.avatar_url,
         email: user.email,
-        url: user.url,
+        url: user.html_url,
         company: user.company,
         location: user.location,
         repos_url: user.repos_url

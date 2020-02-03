@@ -64,8 +64,9 @@ export default class Card extends Component {
 
   copyToClipboard(e) {
     this.currentTarget = e.currentTarget;
-    this.value = e.currentTarget.dataset.value;
-    this.currentTarget.dataset.value = 'Copied to Clipboard';
+    this.value = this.currentTarget.dataset.value;
+    if (this.value == 'Copied!') return;
+    this.currentTarget.dataset.value = 'Copied!';
     var input = document.createElement('input');
     input.value = this.value;
     document.body.appendChild(input);
@@ -74,6 +75,6 @@ export default class Card extends Component {
     document.body.removeChild(input);
     setTimeout(() => {
       this.currentTarget.dataset.value = this.value;
-    }, 2000);
+    }, 350);
   }
 }

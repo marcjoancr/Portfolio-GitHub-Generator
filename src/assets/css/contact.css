@@ -16,7 +16,13 @@
   font-size: 1rem;
   outline: none;
   border: 1px solid var(--text-color);
+  color: var(--text-color-contrasted);
+  background-color: var(--primary-color);
   border-radius: 2px;
+}
+.contact form *::placeholder {
+  color: var(--text-color-contrasted);
+  background-color: var(--primary-color);
 }
 .contact form .subject {
   font-weight: bold;

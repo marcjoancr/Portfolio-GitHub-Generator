@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HorizontalBar } from 'react-chartjs-2';
+import { HorizontalBar, Doughnut } from 'react-chartjs-2';
 
 import '../assets/css/languages.css';
 
@@ -11,20 +11,32 @@ export default class Languages extends Component {
   render() {
     const languages = this.props.languages;
     delete languages.total;
-    const dataValues = Object.values(languages).forEach(
-      value => value / this.props.total
-    );
+    const dataLabels =
+      Object.keys(languages).length > 0
+        ? Object.keys(languages)
+        : ['Javascript', 'HTML', 'CSS', 'Java', 'Python'];
+    const dataValues =
+      Object.values(languages).length > 0
+        ? Object.values(languages)
+        : [50, 234, 134, 34, 11];
+
     const primaryColor = getComputedStyle(document.body).getPropertyValue(
       '--primary-color'
     );
+    const textContrasted = getComputedStyle(document.body).getPropertyValue(
+      '--text-color-contrasted'
+    );
 
     const data = {
-      labels: Object.keys(languages),
+      labels: dataLabels,
       datasets: [
         {
-          data: Object.values(languages),
+          data: dataValues,
           backgroundColor: primaryColor,
-          hoverBackgroundColor: primaryColor
+          hoverBackgroundColor: primaryColor,
+          borderWidth: 0,
+          borderColor: textContrasted,
+          hoverBorderColor: textContrasted
         }
       ]
     };
@@ -32,7 +44,23 @@ export default class Languages extends Component {
       scales: {
         yAxes: [
           {
-            position: 'right'
+            position: 'right',
+            ticks: {
+              fontColor: textContrasted
+            },
+            gridLines: {
+              zeroLineColor: textContrasted,
+              color: textContrasted,
+              borderDash: [1, 3]
+            }
+          }
+        ],
+        xAxes: [
+          {
+            ticks: {
+              fontColor: textContrasted
+            },
+            gridLines: { zeroLineColor: textContrasted, color: textContrasted }
           }
         ]
       },

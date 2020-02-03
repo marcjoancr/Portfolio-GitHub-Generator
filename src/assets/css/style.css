@@ -1,12 +1,12 @@
 /*** VARIABLES */
 :root {
-  --primary-color: #404040;
-  --secondary-color: #404040;
-  --ternary-color: #404040;
+  --primary-color: #5b8c85;
 
-  --text-color: #404040;
-  --text-color-contrasted: #f9f9f9;
-  --bg-color: #f9f9f9;
+  --text-color: #ecce6d;
+  --text-color-contrasted: #b0a160;
+  --text-color-tooltip: #b0a160;
+  --bg-color: #434e52;
+  --bg-color-tooltip: #434e52;
 
   --base-font: 16px;
 
