@@ -1,0 +1,30 @@
+.edit {
+	position: fixed;
+	top: var(--nav-height);
+	height: 100vh;
+	padding: 20px;
+	color: whitesmoke;
+	background-color: black;
+	opacity: 0.55;
+	z-index: 10;
+}
+.edit > div {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 10px 0;
+}
+.edit input[type='color'] {
+	width: 32px;
+	height: 22px;
+	padding: 0;
+	margin-left: 15px;
+	border: 2px solid whitesmoke;
+	-webkit-appearance: none;
+}
+.edit input[type='color']::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+.edit input[type='color']::-webkit-color-swatch {
+	border: none;
+}
